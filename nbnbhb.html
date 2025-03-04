@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOOG MOVIES - Watch Movies & Shows</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <h1>DOOG MOVIES</h1>
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">TV Shows</a></li>
+                <li><a href="#">My List</a></li>
+                <li><a href="#" onclick="openLoginForm()">Log In</a></li>
+                <li><a href="#" onclick="openSignUpForm()">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Unlimited Movies & TV Shows</h2>
+            <p>Watch anywhere, anytime</p>
+            <button onclick="startWatching()">Watch Now</button>
+        </div>
+    </section>
+
+    <!-- Contact Information Section (Phone Number & Admin Email) -->
+    <section class="contact-info">
+        <h3>Contact Us</h3>
+        <p>For support, call us at: <a href="tel:+917865077628">7865077628</a></p>
+        <p>For admin inquiries, email us at: <a href="mailto:sensenkar06@gmail.com">sensenkar06@gmail.com</a></p>
+    </section>
+
+    <!-- Trending Section -->
+    <section class="trending">
+        <h2>Trending Now</h2>
+        <div class="movie-grid">
+            <div class="movie-card">
+                <img src="movie1.jpg" alt="Movie 1">
+                <h3>Movie Title</h3>
+            </div>
+            <div class="movie-card">
+                <img src="movie2.jpg" alt="Movie 2">
+                <h3>Movie Title</h3>
+            </div>
+            <div class="movie-card">
+                <img src="movie3.jpg" alt="Movie 3">
+                <h3>Movie Title</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 DOOG MOVIES. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Sign-Up Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeSignUpForm()">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <input type="text" placeholder="Username" required><br>
+                <input type="email" placeholder="Email" required><br>
+                <input type="password" placeholder="Password" required><br>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- AI Chatbot -->
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header">
+            <h3>AI Chatbot</h3>
+            <button onclick="closeChatbot()">X</button>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <div class="chat-message bot-message">Hi! How can I help you today?</div>
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" id="user-input" placeholder="Type a message..." oninput="sendMessage(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+<ALOASK-SEPARATE-EDITORS>/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #141414;
+    color: #fff;
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.navbar .logo h1 {
+    color: #fff;
+    font-size: 24px;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+}
+
+/* Hero Section */
+.hero {
+    height: 600px;
+    background-image: url('hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero-content h2 {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.hero button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* Contact Information Section */
+.contact-info {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #222;
+    color: white;
+}
+
+.contact-info h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    font-size: 20px;
+}
+
+.contact-info a {
+    color: #e50914;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Trending Section */
+.trending {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.trending h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.movie-card {
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.movie-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card h3 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Footer */
+footer {
+    background-color: #000;
+    padding: 20px 0;
+    text-align: center;
+    color: #777;
+}
+
+/* Sign-Up Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    width: 400px;
+    border-radius: 8px;
+}
+
+.close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+}
+
+.modal input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+/* AI Chatbot */
+.chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #333;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatbot-header {
+    background-color: #222;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    border-radius: 8px 8px 0 0;
+}
+
+.chatbot-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    color: white;
+}
+
+.chat-message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 70%;
+}
+
+.bot-message {
+    background-color: #555;
+    margin-left: 10px;
+}
+
+.user-message {
+    background-color: #e50914;
+    margin-right: 10px;
+    align-self: flex-end;
+}
+
+.chatbot-footer {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    background-color: #222;
+}
+
+.chatbot-footer input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.chatbot-footer button {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+<ALOASK-SEPARATE-EDITORS>const openaiApiKey = 'YOUR_OPENAI_API_KEY'; // OpenAI API Key
+
+// Send message to ChatGPT API
+async function sendChatGPTMessage(userMessage) {
+    const response = await fetch('https://api.openai.com/v1/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${openaiApiKey}`
+        },
+        body: JSON.stringify({
+            model: "text-davinci-003",
+            prompt: userMessage,
+            max_tokens: 150,
+            temperature: 0.7
+        })
+    });
+    const data = await response.json();
+    return data.choices[0].text.trim(); // ChatGPT का उत्तर
+}
+
+// Open and Close SignUp Form
+function openSignUpForm() {
+    document.getElementById('signup-modal').style.display = 'block';
+}
+
+function closeSignUpForm() {
+    document.getElementById('signup-modal').style.display = 'none';
+}
+
+// AI Chatbot
+function openChatbot() {
+    document.getElementById('chatbot').style.display = 'flex';
+}
+
+function closeChatbot() {
+    document.getElementById('chatbot').style.display = 'none';
+}
+
+function sendMessage() {
+    const userMessage = document.getElementById('user-input').value;
+    if (userMessage.trim()) {
+        const chatBody = document.getElementById('chatbot-body');
+        const userMessageElement = document.createElement('div');
+        userMessageElement.classList.add('chat-message', 'user-message');
+        userMessageElement.innerText = userMessage;
+        chatBody.appendChild(userMessageElement);
+
+        // ChatGPT का उत्तर लाना
+        sendChatGPTMessage(userMessage).then((botResponse) => {
+            const botMessageElement = document.createElement('div');
+            botMessageElement.classList.add('chat-message', 'bot-message');
+            botMessageElement.innerText = botResponse;
+            chatBody.appendChild(botMessageElement);
+        });
+
+        document.getElementById('user-input').value = ''; // Input को क्लियर करना
+    }
+}
+
+// Watch Now Button
+function startWatching() {
+    alert('Enjoy watching your favorite movies!');
+}
